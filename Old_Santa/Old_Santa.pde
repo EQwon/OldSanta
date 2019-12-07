@@ -35,6 +35,8 @@ int stage = 0;
 int score = 0;
 int synopsis = 0; // PImage[] index num
 int time = 30;
+boolean tutorialClear = false;
+boolean tutoHoverCheck = false;
 
 void setup()
 {
@@ -84,14 +86,42 @@ void draw()
     video.loadPixels();
 
     drawBackground();
-    if (letter.on) letter.draw();
     if (presents[2].on) presents[2].draw();
     if (car.on) car.draw();
 
+    if (blobs.size() < 2 && !click) {    
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textSize(24);
+      text("Pick up Controller", width/2, 50);
+    } else if(!click || !tutoHoverCheck) {
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textSize(24);
+      text("GOOD!", width/2, 50);
+      text("NOW Pick up Present!", width/2, 100);
+    } else if(click && tutoHoverCheck) {
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textSize(24);
+      text("VERY GOOD!", width/2, 50);
+      text("NOW Carry Present", width/2, 100);
+    } 
+
     blobDetection();
+    
+    if(tutorialClear) stage = 3;
     break;
 
-  case 3: //main game
+  case 3: //intermission
+    background(255);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text("PRESS SPACEBAR FOR PLAY", width/2, height/2);
+    break;
+
+  case 4: //main game
     blobStateMachine();
     timers.checkTimers();
 
@@ -113,7 +143,7 @@ void draw()
     blobDetection();
     break;
 
-  case 4: //result
+  case 5: //result
     background(255);
     fill(0);
     textAlign(CENTER, CENTER);
@@ -188,7 +218,13 @@ void keyPressed() {
     if (synopsis > 4) {
       stage = 2;
     }
-  } else if (stage == 4 && (key == 'r' || key == 'R')) {
+  } else if (stage == 3 && key == ' ') {
+    stage = 4;
+  } else if (stage == 5 && (key == 'r' || key == 'R')) {
     stage = 0;
+    score = 0;
+    time = 30;
+    synopsis = 0;
+    tutorialClear = false;
   }
 }
