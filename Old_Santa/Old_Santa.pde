@@ -30,6 +30,12 @@ boolean click = false;
 // 0 : free, 1 : just Pressed, 2 : pressing, 3: just released
 int inputState = 0;
 
+//Stage & System
+int stage = 0;
+int score = 0;
+int synopsis = 0; // PImage[] index num
+int time = 30;
+
 void setup()
 {
   size(640, 480);
@@ -45,25 +51,78 @@ void setup()
 
 void draw()
 {
-  blobStateMachine();
-  timers.checkTimers();
+  switch(stage) {
+  case 0: //start screen
+    background(255);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text("Start Screen", width/2, height/2);
+    textSize(24);
+    text("- Press ANY Key -", width/2, height/2+40);
+    break;
 
-  if (video.available())
-  {
-    video.read();
-    flip(video);
-  }
-  video.loadPixels();
+  case 1: //Synopsis screen
+    background(255);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text("Synopsis Screen " + synopsis, width/2, height/2);
+    textSize(24);
+    text("- Press SpaceBar -", width/2, height/2+40);    
+    break;
 
-  drawBackground();
-  if (letter.on) letter.draw();
-  for (int i = 0; i < presents.length; i++)
-  {
-    if (presents[i].on) presents[i].draw();
+  case 2: //tutorial
+    blobStateMachine();
+    timers.checkTimers();
+
+    if (video.available())
+    {
+      video.read();
+      flip(video);
+    }
+    video.loadPixels();
+
+    drawBackground();
+    if (letter.on) letter.draw();
+    if (presents[2].on) presents[2].draw();
+    if (car.on) car.draw();
+
+    blobDetection();
+    break;
+
+  case 3: //main game
+    blobStateMachine();
+    timers.checkTimers();
+
+    if (video.available())
+    {
+      video.read();
+      flip(video);
+    }
+    video.loadPixels();
+
+    drawBackground();
+    if (letter.on) letter.draw();
+    for (int i = 0; i < presents.length; i++)
+    {
+      if (presents[i].on) presents[i].draw();
+    }
+    if (car.on) car.draw();
+
+    blobDetection();
+    break;
+
+  case 4: //result
+    background(255);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text("Result Screen" + synopsis, width/2, height/2);
+    textSize(24);
+    text("Your Score " + score, width/2, height/2+40);
+    break;
   }
-  if (car.on) car.draw();
-  
-  blobDetection();
 }
 
 void drawBackground()
@@ -107,7 +166,7 @@ void blobStateMachine()
   // When blob distance is smaller than const value,
   // it means "Click"
   click = checkBlobDist();
-  
+
   if (click) {
     if (pclick == false) inputState = 1;
     else inputState = 2;
@@ -117,4 +176,19 @@ void blobStateMachine()
   }
 
   pclick = click;
+}
+
+void keyPressed() {
+  if (stage == 0) {
+    stage = 1;
+  } else if (stage == 1) {
+    if (key == ' ') {
+      synopsis++;
+    }
+    if (synopsis > 4) {
+      stage = 2;
+    }
+  } else if (stage == 4 && (key == 'r' || key == 'R')) {
+    stage = 0;
+  }
 }
