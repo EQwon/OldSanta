@@ -175,7 +175,6 @@ boolean checkBlobDist()
   
   midPoint = getMiddle(b.get(0), b.get(1));
   PVector distance = new PVector(b.get(0).getCenter().x - b.get(1).getCenter().x, b.get(0).getCenter().y - b.get(1).getCenter().y);
-  println(distance.mag());
   if(distance.mag() < 150) return true;
   return false;
 }
