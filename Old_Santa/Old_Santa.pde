@@ -88,29 +88,36 @@ void draw()
     drawBackground();
     if (presents[2].on) presents[2].draw();
     if (car.on) car.draw();
-
-    if (blobs.size() < 2 && !click) {    
+    
+    if (!presents[2].isDelivering) {
+      if (blobs.size() < 2 && !click) {    
+        fill(255);
+        textAlign(CENTER, CENTER);
+        textSize(24);
+        text("Pick up Controller", width/2, 50);
+      } else if (!click || !tutoHoverCheck) {
+        fill(255);
+        textAlign(CENTER, CENTER);
+        textSize(24);
+        text("GOOD!", width/2, 50);
+        text("NOW Pick up Present!", width/2, 100);
+      } else if (click && tutoHoverCheck) {
+        fill(255);
+        textAlign(CENTER, CENTER);
+        textSize(24);
+        text("VERY GOOD!", width/2, 50);
+        text("NOW Carry Present", width/2, 100);
+      }
+    } else {
       fill(255);
       textAlign(CENTER, CENTER);
       textSize(24);
-      text("Pick up Controller", width/2, 50);
-    } else if(!click || !tutoHoverCheck) {
-      fill(255);
-      textAlign(CENTER, CENTER);
-      textSize(24);
-      text("GOOD!", width/2, 50);
-      text("NOW Pick up Present!", width/2, 100);
-    } else if(click && tutoHoverCheck) {
-      fill(255);
-      textAlign(CENTER, CENTER);
-      textSize(24);
-      text("VERY GOOD!", width/2, 50);
-      text("NOW Carry Present", width/2, 100);
-    } 
+      text("NICE!", width/2, 50);
+    }
 
     blobDetection();
-    
-    if(tutorialClear) stage = 3;
+
+    if (tutorialClear) stage = 3;
     break;
 
   case 3: //intermission
