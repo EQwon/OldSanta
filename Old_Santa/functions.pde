@@ -129,26 +129,54 @@ boolean hoverCheck(Present present, ArrayList<Blob> b) {
   return false;
 }
 
-void blobSizeCheck(ArrayList<Blob> b, int size) { 
-  for (int i = b.size()-1; i >= 0; i--) {
-    if (b.get(i).size() < size) {
+ArrayList<Blob> blobSizeCheck(ArrayList<Blob> b)
+{
+  for (int i = b.size()-1; i >= 0; i--)
+  {
+    if (b.get(i).size() < 1200)
       b.remove(i);
-    }
   }
+  
+  if(b.size() < 2) return b;
+  
+  ArrayList<Blob> nowBlobs = new ArrayList<Blob>();
+  
+  int biggestIndex = 0;
+  for (int i = 0; i < b.size(); i++)
+  {
+    if(b.get(i).size() > b.get(biggestIndex).size())
+      biggestIndex = i;
+  }
+  nowBlobs.add(b.get(biggestIndex));
+  b.remove(biggestIndex);
+  
+  biggestIndex = 0;
+  for (int i = 0; i < b.size(); i++)
+  {
+    if(b.get(i).size() > b.get(biggestIndex).size())
+      biggestIndex = i;
+  }
+  nowBlobs.add(b.get(biggestIndex));
+  
+  return nowBlobs;
+}
+
+boolean blobSizeComp(Blob a, Blob b)
+{
+  if (a.size() > b.size()) return true;
+  else return false;
 }
 
 
 boolean checkBlobDist()
 {
   ArrayList<Blob> b = blobs;
-  for (int i = 0; i < b.size() - 1; i++) {
-    for (int j = i + 1; j <b.size(); j++) {
-      midPoint = getMiddle(b.get(i), b.get(j));
-      if (dist(b.get(i).minx, b.get(i).miny, b.get(j).maxx, b.get(j).maxy) <= 150) {
-        return true;
-      }
-    }
-  }
+  if(b.size() < 2) return false;
+  
+  midPoint = getMiddle(b.get(0), b.get(1));
+  PVector distance = new PVector(b.get(0).getCenter().x - b.get(1).getCenter().x, b.get(0).getCenter().y - b.get(1).getCenter().y);
+  println(distance.mag());
+  if(distance.mag() < 150) return true;
   return false;
 }
 
@@ -160,15 +188,14 @@ float distSq(float x1, float y1, float x2, float y2) {
 void blobDetection()
 {
   ArrayList<Blob> currentBlobs = new ArrayList<Blob>();
-  
+
   colorDetect(currentBlobs);
-  
+
   //matching blob
   blobMatch(blobs, currentBlobs);
-  
+
   //blob Size Check
-  blobSizeCheck(currentBlobs, 500);
-  blobSizeCheck(blobs, 500);
+  blobs = blobSizeCheck(blobs);
 
   //Blob Show
   for (Blob b : blobs) b.show();

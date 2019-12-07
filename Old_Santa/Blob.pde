@@ -1,4 +1,4 @@
-class Blob {
+class Blob{
   float minx;
   float miny;
   float maxx;
