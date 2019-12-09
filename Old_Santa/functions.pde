@@ -211,3 +211,39 @@ void blobDetection()
   text("Is Click : " + click, width-10, 130);
   text("Was Clicked : " + pclick, width-10, 150);
 }
+
+void swapPresentPos()
+{
+  if(millis() % 6 == 1)
+  {
+    PVector temp = presents[2].originPos;
+    presents[2].originPos = presents[1].originPos;
+    presents[1].originPos = temp;
+  }
+  else if(millis() % 6 == 2)
+  {
+    PVector temp = presents[0].originPos;
+    presents[0].originPos = presents[1].originPos;
+    presents[1].originPos = temp;
+  }
+  else if(millis() % 6 == 3)
+  {
+    PVector temp = presents[0].originPos;
+    presents[0].originPos = presents[2].originPos;
+    presents[2].originPos = presents[1].originPos;
+    presents[1].originPos = temp;
+  }
+  else if(millis() % 6 == 4)
+  {
+    PVector temp = presents[0].originPos;
+    presents[0].originPos = presents[1].originPos;
+    presents[1].originPos = presents[2].originPos;
+    presents[2].originPos = temp;
+  }
+  else if(millis() % 6 == 5)
+  {
+    PVector temp = presents[0].originPos;
+    presents[0].originPos = presents[2].originPos;
+    presents[2].originPos = temp;
+  }
+}

@@ -34,7 +34,6 @@ int inputState = 0;
 //Stage & System
 int stage = 0;
 int synopsis = 0; // PImage[] index num
-int time = 30;
 
 void setup()
 {
@@ -45,8 +44,6 @@ void setup()
   // video setting
   video = new Capture(this, 640, 480, 30);
   video.start();
-  
-  NextQuiz();
 }
 
 void draw()
@@ -101,7 +98,10 @@ void NextQuiz()
 
   letter.initialize();
   for (int i = 0; i < presents.length; i++)
+  {
     presents[i].initialize();
+    swapPresentPos();
+  }
   car.initialize();
 }
 
@@ -150,13 +150,16 @@ void keyPressed() {
     }
     if (synopsis > 4) {
       stage = 2;
+      NextQuiz();
     }
+  } else if (stage == 2 && key == ' ')
+  {
+    stage = 3;
   } else if (stage == 3 && key == ' ') {
     stage = 4;
   } else if (stage == 5 && (key == 'r' || key == 'R')) {
     stage = 0;
     correctCnt = 0;
-    time = 30;
     synopsis = 0;
   }
 }

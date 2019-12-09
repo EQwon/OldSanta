@@ -75,6 +75,7 @@ class Present
       }
       car.deliver = true;
       letter.on = false;
+      if(stage != 4) return; 
       if (answerNum == myNum) timers.correctReactionTimer.startTimer();
       else timers.wrongReactionTimer.startTimer();
     }

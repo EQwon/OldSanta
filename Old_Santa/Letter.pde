@@ -2,7 +2,7 @@ class Letter
 {
   boolean on;
   PImage img;
-  PVector pos = new PVector(300, 200);
+  PVector pos = new PVector(200, 200);
 
   Letter()
   {

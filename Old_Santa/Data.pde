@@ -6,9 +6,9 @@ class Data
   
   String[][] QuizData = {
     //letter, answer, wrong1, wrong2
-    {"present_earmuffs", "present_earmuffs", "present_mittens", "present_woolen_hat"},
-    {"present_money", "present_money", "present_pengsoo", "present_pororo"},
-    {"present_pororo", "present_pororo", "present_mittens", "present_woolen_hat"}
+    {"letter_elsas_clothes", "elsas_clothes", "glass_shoes", "money"},
+    {"letter_glasses", "glasses", "ear_phone", "hamster_doll"},
+    {"letter_rubber_boots", "rubber_boots", "umbrella", "fire_engine"}
   };
   
   String[] randomData()

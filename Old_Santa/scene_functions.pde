@@ -42,7 +42,12 @@ void tutorialScene()
 
 void mainScene()
 {
-  timers.mainTimer.startTimer();
+  if(timers.mainTimer.isSet() == false)
+  {
+    timers.mainTimer.startTimer();
+    NextQuiz();
+  }
+  
   blobStateMachine();
   timers.checkTimers();
 
@@ -54,11 +59,16 @@ void mainScene()
   video.loadPixels();
 
   drawBackground();
-  if(timers.mainTimer.remainTime() >= 0)
+  if (timers.mainTimer.remainTime() >= 0)
   {
     // show remain time
     int remainTime = timers.mainTimer.remainTime();
-    println(remainTime);
+
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    text(remainTime + " Sec", 0.7 * width, 50);
+    text(correctCnt + " Success", 0.5 * width, 50);
   }
   if (letter.on) letter.draw();
   for (int i = 0; i < presents.length; i++)
