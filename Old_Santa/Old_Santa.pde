@@ -3,6 +3,7 @@ import processing.video.*;
 Capture video;
 Image imgHolder;
 
+TutoText tutoText = new TutoText();
 Carriage car = new Carriage();
 Quiz quiz;
 Letter letter = new Letter();
@@ -32,11 +33,8 @@ int inputState = 0;
 
 //Stage & System
 int stage = 0;
-int score = 0;
 int synopsis = 0; // PImage[] index num
 int time = 30;
-boolean tutorialClear = false;
-boolean tutoHoverCheck = false;
 
 void setup()
 {
@@ -47,7 +45,7 @@ void setup()
   // video setting
   video = new Capture(this, 640, 480, 30);
   video.start();
-
+  
   NextQuiz();
 }
 
@@ -55,69 +53,15 @@ void draw()
 {
   switch(stage) {
   case 0: //start screen
-    background(255);
-    fill(0);
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    text("Start Screen", width/2, height/2);
-    textSize(24);
-    text("- Press ANY Key -", width/2, height/2+40);
+    startScene();
     break;
 
   case 1: //Synopsis screen
-    background(255);
-    fill(0);
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    text("Synopsis Screen " + synopsis, width/2, height/2);
-    textSize(24);
-    text("- Press SpaceBar -", width/2, height/2+40);    
+    synopsisScene();
     break;
 
   case 2: //tutorial
-    blobStateMachine();
-    timers.checkTimers();
-
-    if (video.available())
-    {
-      video.read();
-      flip(video);
-    }
-    video.loadPixels();
-
-    drawBackground();
-    if (presents[2].on) presents[2].draw();
-    if (car.on) car.draw();
-    
-    if (!presents[2].isDelivering) {
-      if (blobs.size() < 2 && !click) {    
-        fill(255);
-        textAlign(CENTER, CENTER);
-        textSize(24);
-        text("Pick up Controller", width/2, 50);
-      } else if (!click || !tutoHoverCheck) {
-        fill(255);
-        textAlign(CENTER, CENTER);
-        textSize(24);
-        text("GOOD!", width/2, 50);
-        text("NOW Pick up Present!", width/2, 100);
-      } else if (click && tutoHoverCheck) {
-        fill(255);
-        textAlign(CENTER, CENTER);
-        textSize(24);
-        text("VERY GOOD!", width/2, 50);
-        text("NOW Carry Present", width/2, 100);
-      }
-    } else {
-      fill(255);
-      textAlign(CENTER, CENTER);
-      textSize(24);
-      text("NICE!", width/2, 50);
-    }
-
-    blobDetection();
-
-    if (tutorialClear) stage = 3;
+    tutorialScene();
     break;
 
   case 3: //intermission
@@ -129,25 +73,7 @@ void draw()
     break;
 
   case 4: //main game
-    blobStateMachine();
-    timers.checkTimers();
-
-    if (video.available())
-    {
-      video.read();
-      flip(video);
-    }
-    video.loadPixels();
-
-    drawBackground();
-    if (letter.on) letter.draw();
-    for (int i = 0; i < presents.length; i++)
-    {
-      if (presents[i].on) presents[i].draw();
-    }
-    if (car.on) car.draw();
-
-    blobDetection();
+    mainScene();
     break;
 
   case 5: //result
@@ -157,7 +83,7 @@ void draw()
     textSize(40);
     text("Result Screen" + synopsis, width/2, height/2);
     textSize(24);
-    text("Your Score " + score, width/2, height/2+40);
+    text("Your Score " + correctCnt, width/2, height/2+40);
     break;
   }
 }
@@ -229,9 +155,8 @@ void keyPressed() {
     stage = 4;
   } else if (stage == 5 && (key == 'r' || key == 'R')) {
     stage = 0;
-    score = 0;
+    correctCnt = 0;
     time = 30;
     synopsis = 0;
-    tutorialClear = false;
   }
 }

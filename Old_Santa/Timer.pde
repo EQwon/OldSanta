@@ -12,6 +12,8 @@ class Timer
   
   void startTimer()
   {
+    if(set) return;
+    
     savedTime = millis();
     set = true;
   }
@@ -32,5 +34,12 @@ class Timer
       return true;
     }
     else return false;
+  }
+  
+  int remainTime()
+  {
+    int remain = savedTime + interval - millis();
+    
+    return remain/1000;
   }
 }

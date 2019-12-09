@@ -49,7 +49,6 @@ class Present
       && nowPos.y - height/2 <= midPoint.y && midPoint.y <= nowPos.y + height/2)
     {
       holdingPresentNum = myNum;
-      tutoHoverCheck = true;
     }
   }
 
@@ -90,6 +89,5 @@ class Present
   void backToOrigin()
   {
     nowPos = originPos;
-    tutoHoverCheck = false;   
   }
 }
