@@ -8,7 +8,7 @@ class Image
     "lego", "mail_box", "mimis_phone", "mittens", "money",
     "pengsoo", "pocky", "police_car", "pororo", "puzzle",
     "red_bag", "rubber_boots", "straw_hat", "teddy_bear", "umbrella",
-    "woolen_hat"};
+    "woolen_hat", "cozy_socks", "santas_hat", "yankee_candle"};
   PImage[] imgs;
 
   Image()
