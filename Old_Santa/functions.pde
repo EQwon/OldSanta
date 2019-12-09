@@ -200,6 +200,7 @@ void blobDetection()
   for (Blob b : blobs) b.show();
 
   //debug
+  /*
   textAlign(RIGHT);
   textSize(12);
   fill(0);
@@ -210,6 +211,7 @@ void blobDetection()
   text("Blob State : " + inputState, width-10, 110);
   text("Is Click : " + click, width-10, 130);
   text("Was Clicked : " + pclick, width-10, 150);
+  */
 }
 
 void swapPresentPos()

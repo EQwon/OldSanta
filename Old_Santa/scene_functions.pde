@@ -18,6 +18,12 @@ void synopsisScene()
   text("Synopsis Screen " + synopsis, width/2, height/2);
   textSize(24);
   text("- Press SpaceBar -", width/2, height/2+40);
+
+  if (synopsis == 4) {
+    drawBackground();
+    imageMode(CENTER);
+    image(imgHolder.getImage("t1"), 205, 137);
+  }
 }
 
 void tutorialScene()
@@ -42,12 +48,12 @@ void tutorialScene()
 
 void mainScene()
 {
-  if(timers.mainTimer.isSet() == false)
+  if (timers.mainTimer.isSet() == false)
   {
     timers.mainTimer.startTimer();
     NextQuiz();
   }
-  
+
   blobStateMachine();
   timers.checkTimers();
 

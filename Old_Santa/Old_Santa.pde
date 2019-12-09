@@ -62,11 +62,13 @@ void draw()
     break;
 
   case 3: //intermission
-    background(255);
-    fill(0);
+    drawBackground();
+    imageMode(CENTER);
+    image(imgHolder.getImage("intermission"), 205, 137);
+    /*fill(0);
     textAlign(CENTER, CENTER);
     textSize(40);
-    text("PRESS SPACEBAR FOR PLAY", width/2, height/2);
+    text("PRESS SPACEBAR FOR PLAY", width/2, height/2);*/
     break;
 
   case 4: //main game

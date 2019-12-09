@@ -1,14 +1,15 @@
 class Image
 {
   String[] imageNames = {"Background", "Rudolf", "Correct", "Wrong", 
-    "letter_elsas_clothes", "letter_glasses", "letter_rubber_boots", "letter5",
+    "letter_elsas_clothes", "letter_glasses", "letter_rubber_boots", "letter5", 
     "binoculars", "camera_kid", "cat_headband", "christmas_tree", "crocodile_doll", 
-    "digital_camera", "drawer", "ear_phone", "earmuffs", "elsas_clothes",
-    "fire_engine", "glass_shoes", "glasses", "globe", "hamster_doll",
-    "lego", "mail_box", "mimis_phone", "mittens", "money",
-    "pengsoo", "pocky", "police_car", "pororo", "puzzle",
-    "red_bag", "rubber_boots", "straw_hat", "teddy_bear", "umbrella",
-    "woolen_hat", "cozy_socks", "santas_hat", "yankee_candle"};
+    "digital_camera", "drawer", "ear_phone", "earmuffs", "elsas_clothes", 
+    "fire_engine", "glass_shoes", "glasses", "globe", "hamster_doll", 
+    "lego", "mail_box", "mimis_phone", "mittens", "money", 
+    "pengsoo", "pocky", "police_car", "pororo", "puzzle", 
+    "red_bag", "rubber_boots", "straw_hat", "teddy_bear", "umbrella", 
+    "woolen_hat", "cozy_socks", "santas_hat", "yankee_candle", 
+    "intermission", "t1", "t2", "t3", "t4", "t5"};
   PImage[] imgs;
 
   Image()
