@@ -155,9 +155,9 @@ void keyPressed() {
       stage = 2;
       NextQuiz();
     }
-  } else if (stage == 2 && key == ' ')
+  } else if (stage == 2 && key == 'a')
   {
-    //stage = 3;
+    stage = 3;
   } else if (stage == 3 && key == ' ') {
     stage = 4;
   } else if (stage == 5 && (key == 'r' || key == 'R')) {
