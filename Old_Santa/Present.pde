@@ -10,17 +10,16 @@ class Present
 
   Present(int num)
   {
-    originPos = new PVector(550, 100 + 140*num);
     myNum = num + 1;
   }
 
-  void initialize()
+  void initialize(int posNum)
   {
     on = true;
     isDelivering = false;
+    originPos = new PVector(1500, 272 + 320*posNum);
     nowPos = originPos;
     this.img = quiz.presentImage(myNum);
-    this.img.resize(128, 128);
     this.width = img.width;
     this.height = img.height;
   }
@@ -31,7 +30,7 @@ class Present
 
     imageMode(CENTER);
     image(img, nowPos.x, nowPos.y);
-    if(isDelivering)
+    if (isDelivering)
     {
       nowPos = new PVector(nowPos.x + car.speed, nowPos.y);
       return;
@@ -61,8 +60,8 @@ class Present
 
   void releasePresent()
   {
-    print(holdingPresentNum);
-    println(", " + myNum + ", ");
+    //print(holdingPresentNum);
+    //println(", " + myNum + ", ");
     if (holdingPresentNum != myNum) return;
     if (car.isPresentOn())
     {
@@ -75,7 +74,7 @@ class Present
       }
       car.deliver = true;
       letter.on = false;
-      if(stage != 4) return; 
+      if (stage != 3) return; 
       if (answerNum == myNum) timers.correctReactionTimer.startTimer();
       else timers.wrongReactionTimer.startTimer();
     }

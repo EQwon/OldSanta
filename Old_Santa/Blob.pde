@@ -6,6 +6,7 @@ class Blob{
     
   int id = 0;
 
+  boolean isRightHand;
   boolean taken = false;
 
   int lifespan = maxLife;
@@ -33,12 +34,16 @@ class Blob{
     maxy = max(maxy, y);
   }
 
-  void show() {
+  void show()
+  {
+    PVector drawPos = videoMapping(getCenter());
+    
     stroke(0);
     fill(255);
     strokeWeight(2);
-    rectMode(CORNERS);
-    rect(minx, miny, maxx, maxy);
+    rectMode(CENTER);
+    if(isRightHand) rect(drawPos.x - 80, drawPos.y, maxx-minx, maxy-miny);
+    else rect(drawPos.x + 80, drawPos.y, maxx-minx, maxy-miny);
   }
   
   void show(Blob b, PImage img) {

@@ -133,31 +133,31 @@ ArrayList<Blob> blobSizeCheck(ArrayList<Blob> b)
 {
   for (int i = b.size()-1; i >= 0; i--)
   {
-    if (b.get(i).size() < 1200)
+    if (b.get(i).size() < 1200 || b.get(i).size() > 40000)
       b.remove(i);
   }
-  
-  if(b.size() < 2) return b;
-  
+
+  if (b.size() < 2) return b;
+
   ArrayList<Blob> nowBlobs = new ArrayList<Blob>();
-  
+
   int biggestIndex = 0;
   for (int i = 0; i < b.size(); i++)
   {
-    if(b.get(i).size() > b.get(biggestIndex).size())
+    if (b.get(i).size() > b.get(biggestIndex).size())
       biggestIndex = i;
   }
   nowBlobs.add(b.get(biggestIndex));
   b.remove(biggestIndex);
-  
+
   biggestIndex = 0;
   for (int i = 0; i < b.size(); i++)
   {
-    if(b.get(i).size() > b.get(biggestIndex).size())
+    if (b.get(i).size() > b.get(biggestIndex).size())
       biggestIndex = i;
   }
   nowBlobs.add(b.get(biggestIndex));
-  
+
   return nowBlobs;
 }
 
@@ -171,11 +171,12 @@ boolean blobSizeComp(Blob a, Blob b)
 boolean checkBlobDist()
 {
   ArrayList<Blob> b = blobs;
-  if(b.size() < 2) return false;
-  
-  midPoint = getMiddle(b.get(0), b.get(1));
-  PVector distance = new PVector(b.get(0).getCenter().x - b.get(1).getCenter().x, b.get(0).getCenter().y - b.get(1).getCenter().y);
-  if(distance.mag() < 150) return true;
+  if (b.size() < 2) return false;
+
+  midPoint = videoMapping(getMiddle(b.get(0), b.get(1)));
+  PVector distance = videoMapping(new PVector(b.get(0).getCenter().x - b.get(1).getCenter().x, b.get(0).getCenter().y - b.get(1).getCenter().y));
+
+  if (distance.mag() < 500) return true;
   return false;
 }
 
@@ -197,10 +198,27 @@ void blobDetection()
   blobs = blobSizeCheck(blobs);
 
   //Blob Show
+  if (blobs.size() == 1) blobs.get(0).isRightHand = true;
+  else if (blobs.size() == 2)
+  {
+    Blob blob0 = blobs.get(0);
+    Blob blob1 = blobs.get(1);
+
+    if (blob0.getCenter().x < blob1.getCenter().x)
+    {
+      blob0.isRightHand = false;
+      blob1.isRightHand = true;
+    } else
+    {
+      blob0.isRightHand = true;
+      blob1.isRightHand = false;
+    }
+  }
+
   for (Blob b : blobs) b.show();
 
   //debug
-  /*
+
   textAlign(RIGHT);
   textSize(12);
   fill(0);
@@ -211,41 +229,41 @@ void blobDetection()
   text("Blob State : " + inputState, width-10, 110);
   text("Is Click : " + click, width-10, 130);
   text("Was Clicked : " + pclick, width-10, 150);
-  */
 }
 
-void swapPresentPos()
+int[] randomPresentPos()
 {
-  if(millis() % 6 == 1)
+  int[] posArray= new int[]{0, 1, 2};
+  int rand = (int)random(6);
+  switch(rand)
   {
-    PVector temp = presents[2].originPos;
-    presents[2].originPos = presents[1].originPos;
-    presents[1].originPos = temp;
+  case 0: 
+    posArray = new int[]{0, 1, 2};
+    break;
+  case 1:
+    posArray = new int[]{0, 2, 1};
+    break;
+  case 2:
+    posArray = new int[]{1, 0, 2};
+    break;
+  case 3:
+    posArray = new int[]{1, 2, 0};
+    break;
+  case 4:
+    posArray = new int[]{2, 0, 1};
+    break;
+  case 5:
+    posArray = new int[]{2, 1, 0};
+    break;
   }
-  else if(millis() % 6 == 2)
-  {
-    PVector temp = presents[0].originPos;
-    presents[0].originPos = presents[1].originPos;
-    presents[1].originPos = temp;
-  }
-  else if(millis() % 6 == 3)
-  {
-    PVector temp = presents[0].originPos;
-    presents[0].originPos = presents[2].originPos;
-    presents[2].originPos = presents[1].originPos;
-    presents[1].originPos = temp;
-  }
-  else if(millis() % 6 == 4)
-  {
-    PVector temp = presents[0].originPos;
-    presents[0].originPos = presents[1].originPos;
-    presents[1].originPos = presents[2].originPos;
-    presents[2].originPos = temp;
-  }
-  else if(millis() % 6 == 5)
-  {
-    PVector temp = presents[0].originPos;
-    presents[0].originPos = presents[2].originPos;
-    presents[2].originPos = temp;
-  }
+
+  return posArray;
+}
+
+PVector videoMapping(PVector pos)
+{
+  float videoWidth = 640;
+  float videoHeight = 480;
+
+  return new PVector(pos.x * (width/videoWidth), pos.y * (height/videoHeight));
 }

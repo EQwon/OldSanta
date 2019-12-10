@@ -3,6 +3,7 @@ import processing.video.*;
 Capture video;
 Image imgHolder;
 
+//Main System
 TutoText tutoText = new TutoText();
 Carriage car = new Carriage();
 Quiz quiz;
@@ -10,7 +11,6 @@ Letter letter = new Letter();
 Present[] presents = {new Present(0), new Present(1), new Present(2)};
 Data data = new Data();
 Timers timers = new Timers();
-
 int holdingPresentNum = 0;
 int correctCnt = 0;
 int answerNum = 2;
@@ -19,7 +19,7 @@ int answerNum = 2;
 ArrayList<Blob> blobs = new ArrayList<Blob>();
 color trackColor = color(255, 0, 0);
 float threshold = 70;
-float distThreshold = 15;
+float distThreshold = 10;
 int maxLife = 200;
 int blobCounter = 0;
 // midPoint is a mouse position
@@ -37,7 +37,7 @@ int synopsis = 0; // PImage[] index num
 
 void setup()
 {
-  size(640, 480);
+  fullScreen();
 
   imgHolder = new Image();
 
@@ -61,21 +61,11 @@ void draw()
     tutorialScene();
     break;
 
-  case 3: //intermission
-    drawBackground();
-    imageMode(CENTER);
-    image(imgHolder.getImage("intermission"), 205, 137);
-    /*fill(0);
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    text("PRESS SPACEBAR FOR PLAY", width/2, height/2);*/
-    break;
-
-  case 4: //main game
+  case 3: //main game
     mainScene();
     break;
 
-  case 5: //result
+  case 4: //result
     background(255);
     fill(0);
     textAlign(CENTER, CENTER);
@@ -92,18 +82,23 @@ void drawBackground()
 {
   background(255);
   imageMode(CENTER);
-  image(imgHolder.getImage("Background"), width/2, height/2);
+  
+  PImage image = imgHolder.getImage("Background");
+  image.resize(width, height);
+  image(image, width/2, height/2);
 }
 
 void NextQuiz()
 {
+  holdingPresentNum = 0;
+
   quiz = new Quiz(data.randomData());
 
   letter.initialize();
+  int[] presentPos = randomPresentPos();
   for (int i = 0; i < presents.length; i++)
   {
-    presents[i].initialize();
-    swapPresentPos();
+    presents[i].initialize(presentPos[i]);
   }
   car.initialize();
 }
@@ -158,9 +153,7 @@ void keyPressed() {
   } else if (stage == 2 && key == 'a')
   {
     stage = 3;
-  } else if (stage == 3 && key == ' ') {
-    stage = 4;
-  } else if (stage == 5 && (key == 'r' || key == 'R')) {
+  } else if (stage == 4 && (key == 'r' || key == 'R')) {
     stage = 0;
     correctCnt = 0;
     synopsis = 0;

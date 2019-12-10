@@ -3,7 +3,7 @@ class Timers
   Timers()
   {}
   
-  Timer tutoFinishTimer = new Timer(800);
+  Timer tutoFinishTimer = new Timer(5000);
   Timer correctReactionTimer = new Timer(1000);
   Timer wrongReactionTimer = new Timer(1000);
   Timer nextQuizTimer = new Timer(2000);
@@ -33,7 +33,7 @@ class Timers
     
     if(mainTimer.isSet() && mainTimer.isFinished())
     {
-      stage = 5;
+      stage = 4;
     }
   }
 }

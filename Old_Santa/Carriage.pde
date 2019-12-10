@@ -5,7 +5,7 @@ class Carriage
   PVector collPos;
   PVector collSize;
   boolean deliver = false;
-  float speed = 20;
+  float speed = 80;
   PImage rudolfImg;
 
   Carriage()
@@ -16,9 +16,9 @@ class Carriage
   void initialize()
   {
     on = true;
-    drawPos = new PVector(210, 369);
-    collPos = new PVector(180, 400);
-    collSize = new PVector(120, 100);
+    drawPos = new PVector(-1000, 780);
+    collPos = new PVector(300, 930);
+    collSize = new PVector(600, 300);
     deliver = false;
   }
 
@@ -37,7 +37,7 @@ class Carriage
     {
       rudolfImg = imgHolder.getImage("Rudolf");
     }
-    imageMode(CENTER);
+    imageMode(CORNER);
     image(rudolfImg, drawPos.x, drawPos.y);
   }
 

@@ -39,9 +39,9 @@ void tutorialScene()
   video.loadPixels();
 
   drawBackground();
+  if (tutoText.on) tutoText.draw();
   if (presents[2].on) presents[2].draw();
   if (car.on) car.draw();
-  if (tutoText.on) tutoText.draw();
 
   blobDetection();
 }

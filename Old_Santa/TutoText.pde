@@ -19,11 +19,11 @@ class TutoText
     {
       imageMode(CENTER);
       image(imgHolder.getImage("t5"), 205, 137);
-      /*fill(255);
-       textAlign(CENTER, CENTER);
-       textSize(24);
-       text("NICE!", width/2, 50);*/
       timers.tutoFinishTimer.startTimer();
+      fill(0);
+      textAlign(CENTER, CENTER);
+      textSize(500);
+      text(timers.tutoFinishTimer.remainTime(), width/2, height/2);      
       return;
     }
 
