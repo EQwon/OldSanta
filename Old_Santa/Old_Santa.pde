@@ -83,6 +83,7 @@ void draw()
     text("Result Screen" + synopsis, width/2, height/2);
     textSize(24);
     text("Your Score " + correctCnt, width/2, height/2+40);
+    text("- PRESS R for Restart -", width/2, height/2+80);
     break;
   }
 }
