@@ -15,7 +15,8 @@ class Data
     {"letter_kisses", "kisses", "zzinGoguma", "rose"},
     {"letter_soap", "soap", "sneakers", "pocky"},
     {"letter_watch", "watch", "ringtoy", "pengsoo"},
-    {"letter_walet", "walet", "balloon", "mail_box"}
+    {"letter_walet", "walet", "balloon", "mail_box"},
+    {"letter_cozy_socks", "cozy_socks", "teddy_bear", "santas_hat"}
   };
   
   String[] randomData()
