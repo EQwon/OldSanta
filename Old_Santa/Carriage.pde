@@ -17,8 +17,8 @@ class Carriage
   {
     on = true;
     drawPos = new PVector(-1000, 780);
-    collPos = new PVector(300, 930);
-    collSize = new PVector(600, 300);
+    collPos = new PVector(300, 1000);
+    collSize = new PVector(600, 100);
     deliver = false;
   }
 
@@ -49,11 +49,10 @@ class Carriage
     rect(collPos.x, collPos.y, collSize.x, collSize.y);
   }
 
-  boolean isPresentOn()
+  boolean isPresentOn(Present p)
   {
-    if (holdingPresentNum == 0) return false;
-    if (!(collPos.x - collSize.x/2 <= midPoint.x && midPoint.x <= collPos.x + collSize.x/2
-      && collPos.y - collSize.y/2 <= midPoint.y && midPoint.y <= collPos.y + collSize.y/2)) return false;
+    if (!(collPos.x - collSize.x/2 <= p.nowPos.x && p.nowPos.x <= collPos.x + collSize.x/2
+      && collPos.y - collSize.y/2 <= p.nowPos.y && p.nowPos.y <= collPos.y + collSize.y/2)) return false;
     
     return true;
   }

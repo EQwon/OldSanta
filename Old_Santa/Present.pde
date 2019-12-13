@@ -2,11 +2,15 @@ class Present
 {
   boolean on;
   boolean isDelivering;
+  boolean isFalling;
   PImage img;
   PVector originPos;
   PVector nowPos;
   int myNum;
   int width, height;
+
+  float nowSpeed = 0;
+  float gravity = 3;
 
   Present(int num)
   {
@@ -17,6 +21,7 @@ class Present
   {
     on = true;
     isDelivering = false;
+    isFalling = false;
     originPos = new PVector(1500, 272 + 320*posNum);
     nowPos = originPos;
     this.img = quiz.presentImage(myNum);
@@ -35,11 +40,40 @@ class Present
       nowPos = new PVector(nowPos.x + car.speed, nowPos.y);
       return;
     }
+    if (isFalling)
+    {
+      nowPos.y += nowSpeed;
+      nowSpeed += gravity;
 
-    if (inputState == 0) backToOrigin();
-    else if (inputState == 1) assignSelf(); 
+      if (nowPos.y > 1200) backToOrigin();
+    } else nowSpeed = 0;
+
+    carriageChecking();
+    
+    /*if (inputState == 0) backToOrigin();
+     else*/    if (inputState == 1) assignSelf(); 
     else if (inputState == 2) drag(new PVector(midPoint.x, midPoint.y));
-    else releasePresent();
+    else if (inputState == 3) releasePresent();
+  }
+
+  void carriageChecking()
+  {
+    if (car.isPresentOn(this))
+    {
+      isDelivering = true;
+      car.deliver = true;
+      letter.on = false;
+
+      for (Present p : presents)
+      {
+        if (p == this) continue;
+        p.poofAnim();
+      }
+
+      if (stage != 3) return; 
+      if (answerNum == myNum) timers.correctReactionTimer.startTimer();
+      else timers.wrongReactionTimer.startTimer();
+    }
   }
 
   void assignSelf()
@@ -56,28 +90,14 @@ class Present
     if (holdingPresentNum != myNum) return;
     if (isDelivering) return;
     nowPos = dragPos;
+    nowSpeed = 0;
   }
 
   void releasePresent()
   {
-    //print(holdingPresentNum);
-    //println(", " + myNum + ", ");
     if (holdingPresentNum != myNum) return;
-    if (car.isPresentOn())
-    {
-      print("answer is " + answerNum);
-      isDelivering = true;
-      for (int i = 0; i < presents.length; i++)
-      {
-        if (i+1 == holdingPresentNum) continue;
-        presents[i].poofAnim();
-      }
-      car.deliver = true;
-      letter.on = false;
-      if (stage != 3) return; 
-      if (answerNum == myNum) timers.correctReactionTimer.startTimer();
-      else timers.wrongReactionTimer.startTimer();
-    }
+
+    isFalling = true;
     holdingPresentNum = 0;
   }
 
@@ -89,5 +109,8 @@ class Present
   void backToOrigin()
   {
     nowPos = originPos;
+
+    nowSpeed = 0;
+    isFalling = false;
   }
 }
