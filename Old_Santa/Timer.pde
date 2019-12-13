@@ -42,4 +42,12 @@ class Timer
     
     return remain/1000;
   }
+  
+  float passedRatio()
+  {
+    float interval = this.interval;
+    float passedTime = millis() - savedTime;
+    
+    return passedTime / interval;
+  }
 }

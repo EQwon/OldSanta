@@ -229,6 +229,7 @@ void blobDetection()
   text("Blob State : " + inputState, width-10, 110);
   text("Is Click : " + click, width-10, 130);
   text("Was Clicked : " + pclick, width-10, 150);
+  
 }
 
 int[] randomPresentPos()
@@ -266,4 +267,43 @@ PVector videoMapping(PVector pos)
   float videoHeight = 480;
 
   return new PVector(pos.x * (width/videoWidth), pos.y * (height/videoHeight));
+}
+
+void showRemainTime()
+{
+  // show remain time
+  int remainTime = timers.mainTimer.remainTime();
+  PImage bar = imgHolder.getImage("ui_clock_bar_background");
+  PImage icon = imgHolder.getImage("ui_clock_icon");
+  float ratio = timers.mainTimer.passedRatio();
+  
+  imageMode(CENTER);
+  tint(255, 100);
+  image(bar, 1650, 60);
+  rectMode(CENTER);
+  noStroke();
+  fill(255, 50, 50, 200);
+  rect(1650 - bar.width*ratio/2, 60, (1-ratio)*bar.width, 0.9*bar.height);
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(40);
+  text(remainTime, width - 80, 60);
+  tint(255);
+  image(icon, 1400, 60);
+}
+
+void showCorrectCnt()
+{
+  PImage box = imgHolder.getImage("ui_score_box");
+  PImage icon = imgHolder.getImage("ui_score_icon");
+  
+  imageMode(CENTER);
+  tint(255, 100);
+  image(box, 1200, 60);
+  fill(255);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text(correctCnt, 1250, 60);
+  tint(255);
+  image(icon, 1100, 55);
 }

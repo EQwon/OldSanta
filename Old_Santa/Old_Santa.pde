@@ -84,7 +84,6 @@ void drawBackground()
   imageMode(CENTER);
   
   PImage image = imgHolder.getImage("Background");
-  image.resize(width, height);
   image(image, width/2, height/2);
 }
 

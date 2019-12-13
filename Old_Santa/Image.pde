@@ -13,7 +13,8 @@ class Image
     "woolen_hat", "cozy_socks", "santas_hat", "yankee_candle", "balloon",
     "fish", "gugu", "kisses", "ringtoy", "rose", "scarf",
     "sneakers", "soap", "soccerBall", "train", "walet", "watch", "zzinGoguma",
-    "intermission", "t1", "t2", "t3", "t4", "t5"};
+    "intermission", "t1", "t2", "t3", "t4", "t5",
+    "ui_clock_bar_background", "ui_clock_icon", "ui_score_box", "ui_score_icon"};
   PImage[] imgs;
 
   Image()

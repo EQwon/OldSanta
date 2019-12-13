@@ -67,14 +67,8 @@ void mainScene()
   drawBackground();
   if (timers.mainTimer.remainTime() >= 0)
   {
-    // show remain time
-    int remainTime = timers.mainTimer.remainTime();
-
-    fill(255);
-    textAlign(CENTER, CENTER);
-    textSize(24);
-    text(remainTime + " Sec", 0.7 * width, 50);
-    text(correctCnt + " Success", 0.5 * width, 50);
+    showRemainTime();
+    showCorrectCnt();
   }
   if (letter.on) letter.draw();
   for (int i = 0; i < presents.length; i++)
