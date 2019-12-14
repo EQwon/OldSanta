@@ -9,17 +9,36 @@ void startScene()
   text("- Press ANY Key -", width/2, height/2+40);
 }
 
-void synopsisScene()
+void introScene()
 {
   background(255);
   fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(40);
-  text("Synopsis Screen " + synopsis, width/2, height/2);
-  textSize(24);
-  text("- Press SpaceBar -", width/2, height/2+40);
 
-  if (synopsis == 4) {
+  String imgName = "";
+  switch(synopsis)
+  {
+  case 0:
+    imgName = "intro0";
+    break;
+  case 1:
+    imgName = "intro1";
+    break;
+  case 2:
+    imgName = "intro2";
+    break;
+  case 3:
+    imgName = "intro3";
+    break;
+  case 4:
+    imgName = "intro4";
+    break;
+  case 5:
+    return;
+  }
+  imageMode(CENTER);
+  image(imgHolder.getImage(imgName), width/2, height/2);
+
+  if (synopsis == 5) {
     drawBackground();
     imageMode(CENTER);
     image(imgHolder.getImage("t1"), 205, 137);
@@ -76,6 +95,7 @@ void mainScene()
     if (presents[i].on) presents[i].draw();
   }
   if (car.on) car.draw();
+  if (reaction.on) reaction.draw();
 
   blobDetection();
 }

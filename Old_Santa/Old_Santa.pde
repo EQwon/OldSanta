@@ -6,6 +6,7 @@ Image imgHolder;
 //Main System
 TutoText tutoText = new TutoText();
 Carriage car = new Carriage();
+ReactionObject reaction = new ReactionObject();
 Quiz quiz;
 Letter letter = new Letter();
 Present[] presents = {new Present(0), new Present(1), new Present(2)};
@@ -54,7 +55,7 @@ void draw()
     break;
 
   case 1: //Synopsis screen
-    synopsisScene();
+    introScene();
     break;
 
   case 2: //tutorial
@@ -100,14 +101,14 @@ void NextQuiz()
     presents[i].initialize(presentPos[i]);
   }
   car.initialize();
+  reaction.initialize();
 }
 
 void CorrectReaction()
 {
   println("Correct!");
   correctCnt += 1;
-  letter.on = true;
-  letter.img = imgHolder.getImage("Correct");
+  reaction.startDraw((int)random(3), true);
 
   timers.nextQuizTimer.startTimer();
 }
@@ -115,8 +116,7 @@ void CorrectReaction()
 void WrongReaction()
 {
   println("Wrong");
-  letter.on = true;
-  letter.img = imgHolder.getImage("Wrong");
+  reaction.startDraw((int)random(3), false);
 
   timers.nextQuizTimer.startTimer();
 }
@@ -145,7 +145,7 @@ void keyPressed() {
     if (key == ' ') {
       synopsis++;
     }
-    if (synopsis > 4) {
+    if (synopsis > 5) {
       stage = 2;
       NextQuiz();
     }

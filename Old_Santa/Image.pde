@@ -1,6 +1,8 @@
 class Image
 {
-  String[] imageNames = {"Background", "Rudolf", "Correct", "Wrong", 
+  String[] imageNames = {"Background", "Rudolf", "letter_thanks", "letter_noThanks",
+    "intro0", "intro1", "intro2", "intro3", "intro4",
+    "heart0", "heart1", "heart2", "heart3",
     "letter_christmas_tree", "letter_cozy_socks", "letter_elsas_clothes", "letter_fire_engine", "letter_fish",
     "letter_glasses", "letter_globe", "letter_hamster_doll", "letter_kisses", "letter_mittens", 
     "letter_piggy_bank", "letter_puzzle", "letter_red_bag", "letter_rubber_boots", "letter_smartphone",

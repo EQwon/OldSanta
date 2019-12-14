@@ -16,7 +16,7 @@ class Carriage
   void initialize()
   {
     on = true;
-    drawPos = new PVector(-1000, 780);
+    drawPos = new PVector(-950, height - 350);
     collPos = new PVector(300, 1000);
     collSize = new PVector(600, 100);
     deliver = false;
@@ -37,6 +37,7 @@ class Carriage
     {
       rudolfImg = imgHolder.getImage("Rudolf");
     }
+    
     imageMode(CORNER);
     image(rudolfImg, drawPos.x, drawPos.y);
   }
