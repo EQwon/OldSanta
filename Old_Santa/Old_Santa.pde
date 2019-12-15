@@ -1,7 +1,9 @@
 import processing.video.*;
+import processing.sound.*;
 
 Capture video;
 Image imgHolder;
+Sound soundHolder;
 
 //Main System
 TutoText tutoText = new TutoText();
@@ -41,6 +43,7 @@ void setup()
   fullScreen();
 
   imgHolder = new Image();
+  soundHolder = new Sound();
 
   // video setting
   video = new Capture(this, 640, 480, 30);
@@ -95,6 +98,7 @@ void NextQuiz()
   quiz = new Quiz(data.randomData());
 
   letter.initialize();
+  soundHolder.getSound("letter").play();
   int[] presentPos = randomPresentPos();
   for (int i = 0; i < presents.length; i++)
   {
