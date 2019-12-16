@@ -94,7 +94,16 @@ void endingScene()
   PImage ending;
   if(correctCnt >= 6)
   {
-
+    ending = animators.goodEndingAnim.anim();
+    ending.resize(width, height);
+    imageMode(CENTER);
+    image(ending, width/2, height/2);
+    
+    PVector textPos = new PVector(width * 0.73f, height * 0.134f);
+    fill(127, 19, 19);
+    textAlign(CENTER, CENTER);
+    textSize(160);
+    text(str(correctCnt), textPos.x, textPos.y);
   }
   else
   {

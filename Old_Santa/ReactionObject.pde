@@ -32,6 +32,9 @@ class ReactionObject
     {
       imageMode(CORNER);
       image(correctImg, myPos.x, myPos.y);
+      
+      PImage heart = animators.correctReactionAnim.anim();
+      image(heart, myPos.x + correctImg.width/2, myPos.y - heart.height);
     }
     else
     {
@@ -43,10 +46,6 @@ class ReactionObject
   void getImage()
   {
     correctImg = imgHolder.getImage("letter_thanks");
-    hearts[0] = imgHolder.getImage("heart0");
-    hearts[1] = imgHolder.getImage("heart1");
-    hearts[2] = imgHolder.getImage("heart2");
-    hearts[3] = imgHolder.getImage("heart3");
     wrongImg = imgHolder.getImage("letter_noThanks");
   }
 }
