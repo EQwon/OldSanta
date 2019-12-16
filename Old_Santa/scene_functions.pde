@@ -32,17 +32,9 @@ void introScene()
   case 4:
     imgName = "intro4";
     break;
-  case 5:
-    return;
   }
   imageMode(CENTER);
   image(imgHolder.getImage(imgName), width/2, height/2);
-
-  if (synopsis == 5) {
-    drawBackground();
-    imageMode(CENTER);
-    image(imgHolder.getImage("t1"), 205, 137);
-  }
 }
 
 void tutorialScene()

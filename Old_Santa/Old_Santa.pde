@@ -86,7 +86,7 @@ void drawBackground()
 {
   background(255);
   imageMode(CENTER);
-  
+
   PImage image = imgHolder.getImage("Background");
   image(image, width/2, height/2);
 }
@@ -146,12 +146,15 @@ void keyPressed() {
   if (stage == 0) {
     stage = 1;
   } else if (stage == 1) {
-    if (key == ' ') {
+    if (key == ' ')
+    {
       synopsis++;
-    }
-    if (synopsis > 5) {
-      stage = 2;
-      NextQuiz();
+      if (synopsis >= 5)
+      {
+        synopsis = 4;
+        stage = 2;
+        NextQuiz();
+      }
     }
   } else if (stage == 2 && key == 'a')
   {
