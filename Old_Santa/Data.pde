@@ -1,5 +1,8 @@
 class Data
 {
+  String[][] randomData = new String[21][4];
+  int dataNum;
+  
   Data()
   {
   }
@@ -31,7 +34,29 @@ class Data
   
   String[] randomData()
   {
-    int ran = (int)random(QuizData.length);
-    return QuizData[ran];
+    dataNum += 1;
+    if(dataNum >= randomData.length)
+    {
+      dataNum = 0;
+      randomizeData();
+    }
+    if(randomData[dataNum][0] == null)
+      randomizeData();
+    return randomData[dataNum];
+  }
+  
+  void randomizeData()
+  {
+    randomData = QuizData;
+    dataNum = 0;
+    
+    for(int i = 0 ; i < QuizData.length; i++)
+    {
+      int num = (int)random(QuizData.length);
+      
+      String[] temp = randomData[i];
+      randomData[i] = randomData[num];
+      randomData[num] = temp;
+    }
   }
 }

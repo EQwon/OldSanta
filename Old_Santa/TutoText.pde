@@ -28,7 +28,7 @@ class TutoText
       {
         getNumberImage();
         timers.tutoFinishTimer.startTimer();
-      }      
+      }
       showTutoFinishTimer(); 
       return;
     }
