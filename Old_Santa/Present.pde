@@ -29,6 +29,18 @@ class Present
     this.height = img.height;
   }
 
+  void initialize(PVector pos)
+  {
+    on = true;
+    isDelivering = false;
+    isFalling = false;
+    originPos = pos;
+    nowPos = originPos;
+    this.img = quiz.presentImage("tutorial_gift");
+    this.width = img.width;
+    this.height = img.height;
+  }
+
   void draw()
   {
     if (img == null) return;
@@ -76,12 +88,8 @@ class Present
       if (stage != 3) return; 
       if (answerNum == myNum) { 
         timers.correctReactionTimer.startTimer();
-        soundHolder.getSound("right_answer_bell").play();
-        soundHolder.getSound("right_answer").play();
       } else {
         timers.wrongReactionTimer.startTimer();
-        soundHolder.getSound("wrong_answer").play();
-        soundHolder.getSound("wrong_answer_2").play();
       }
     } else {
       soundHolder.getSound("clop").stop();

@@ -116,7 +116,7 @@ void TutoQuiz()
 
   letter.initialize();
   soundHolder.getSound("letter").play();
-  presents[2].initialize(new PVector(1400, 912));
+  presents[2].initialize(new PVector(1250, 850));
   car.initialize();
   reaction.initialize();
 }
@@ -124,6 +124,8 @@ void TutoQuiz()
 void CorrectReaction()
 {
   println("Correct!");
+  soundHolder.getSound("right_answer_bell").play();
+  soundHolder.getSound("right_answer").play();
   correctCnt += 1;
   reaction.startDraw((int)random(3), true);
 
