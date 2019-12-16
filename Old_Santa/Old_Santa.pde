@@ -51,7 +51,7 @@ void setup()
   animators.initialize();
 
   sound_stages = new SoundFile[6];
-  
+
   sound_stages[0] = soundHolder.getSound("stage0");
   sound_stages[1] = soundHolder.getSound("stage1");
   sound_stages[2] = soundHolder.getSound("stage2");
@@ -198,13 +198,23 @@ void keyPressed() {
 }
 
 void bgm_loop() {
-  if(bgm_stage != stage) {
-    bgm_stage = stage;
-    for(int i = 0; i <sound_stages.length; i++){
-      if(i == stage) {
-        sound_stages[i].loop();
-      } else {
-        sound_stages[i].stop();
+  if (stage == 4 && correctCnt >= 6) {
+    bgm_stage = 5;
+    for (int i = 0; i <sound_stages.length; i++) {
+        if (i == bgm_stage) {
+          sound_stages[i].loop();
+        } else {
+          sound_stages[i].stop();
+        }
+  } else {
+    if (bgm_stage != stage) {
+      bgm_stage = stage;
+      for (int i = 0; i <sound_stages.length; i++) {
+        if (i == stage) {
+          sound_stages[i].loop();
+        } else {
+          sound_stages[i].stop();
+        }
       }
     }
   }
