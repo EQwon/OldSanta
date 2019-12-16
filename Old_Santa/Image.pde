@@ -21,7 +21,8 @@ class Image
     "soccerBall", "star_doll", "straw_hat", "teddy_bear", "train", "umbrella",
     "wallet", "watch", "woolen_hat", "yankee_candle", "zzinGoguma",
     "intermission", "t1", "t2", "t3", "t4", "t5",
-    "ui_clock_bar_background", "ui_clock_icon", "ui_score_box", "ui_score_icon"};
+    "ui_clock_bar_background", "ui_clock_icon", "ui_score_box", "ui_score_icon",
+    "ending_sad"};
   PImage[] imgs;
 
   Image()

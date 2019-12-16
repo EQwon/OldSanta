@@ -86,3 +86,24 @@ void mainScene()
 
   blobDetection();
 }
+
+void endingScene()
+{
+  PImage ending;
+  
+  if(correctCnt >= 6)
+  {
+    
+  }
+  else
+  {
+    ending = imgHolder.getImage("ending_sad");
+    ending.resize(width, height);
+    
+    PVector textPos = new PVector(width * 0.2f, height * 0.1f);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    text(str(correctCnt), textPos.x, textPos.y);
+  }
+}

@@ -58,7 +58,7 @@ class Present
       nowSpeed += gravity;
 
       if (nowPos.y > 1200) backToOrigin();
-    } else backToOrigin();
+    } else nowSpeed = 0;
 
     carriageChecking();
 
@@ -75,7 +75,7 @@ class Present
       car.deliver = true;
       letter.on = false;
 
-      soundHolder.getSound("clop").loop();
+      soundHolder.getSound("clop").play();
       soundHolder.getSound("jingle_bell").play();
 
       for (Present p : presents)
@@ -90,8 +90,6 @@ class Present
       } else {
         timers.wrongReactionTimer.startTimer();
       }
-    } else {
-      soundHolder.getSound("clop").stop();
     }
   }
 
@@ -129,6 +127,7 @@ class Present
 
   void backToOrigin()
   {
+    println("Back to Origin");
     nowPos = originPos;
 
     nowSpeed = 0;

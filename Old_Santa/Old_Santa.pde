@@ -70,14 +70,7 @@ void draw()
     break;
 
   case 4: //result
-    background(255);
-    fill(0);
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    text("Result Screen" + synopsis, width/2, height/2);
-    textSize(24);
-    text("Your Score " + correctCnt, width/2, height/2+40);
-    text("- PRESS R for Restart -", width/2, height/2+80);
+    endingScene();
     break;
   }
 }

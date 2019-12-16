@@ -215,21 +215,7 @@ void blobDetection()
     }
   }
 
-  for (Blob b : blobs) b.show();
-
-  //debug
-
-  textAlign(RIGHT);
-  textSize(12);
-  fill(0);
-  text("check Dist : " + checkBlobDist(), width-10, 30);
-  //text("check hover : " + hoverCheck(present, blobs), width-10, 50);
-  text("Middle Point x : " + midPoint.x, width-10, 70);
-  text("Middle Point y : " + midPoint.y, width-10, 90);
-  text("Blob State : " + inputState, width-10, 110);
-  text("Is Click : " + click, width-10, 130);
-  text("Was Clicked : " + pclick, width-10, 150);
-  
+  for (Blob b : blobs) b.show();  
 }
 
 int[] randomPresentPos()
