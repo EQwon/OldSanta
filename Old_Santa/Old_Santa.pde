@@ -51,9 +51,12 @@ void setup()
   animators.initialize();
 
   sound_stages = new SoundFile[6];
-  for(int i = 0; i < sound_stages.length - 1; i++){
-    sound_stages[i] = soundHolder.getSound("stage" + i);
-  }
+  
+  sound_stages[0] = soundHolder.getSound("stage0");
+  sound_stages[1] = soundHolder.getSound("stage1");
+  sound_stages[2] = soundHolder.getSound("stage2");
+  sound_stages[3] = soundHolder.getSound("stage3");
+  sound_stages[4] = soundHolder.getSound("stage4");
   sound_stages[5] = soundHolder.getSound("stage4_bad");
   // video setting
   video = new Capture(this, 640, 480, 30);
