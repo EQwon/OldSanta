@@ -12,7 +12,7 @@ class Carriage
   {
     initialize();
   }
-  
+
   void initialize()
   {
     on = true;
@@ -25,19 +25,25 @@ class Carriage
   void draw()
   {
     drawCarriage();
-    if(deliver)
+    if (deliver)
+    {
+      soundHolder.getSound("clop").loop();
+      soundHolder.getSound("jingle_bell").play();
       drawPos = new PVector(drawPos.x + speed, drawPos.y);
-    else
+    } else
+    {
       drawCollideBox();
+      soundHolder.getSound("clop").stop();
+    }
   }
 
   void drawCarriage()
   {
-    if(rudolfImg == null)
+    if (rudolfImg == null)
     {
       rudolfImg = imgHolder.getImage("Rudolf");
     }
-    
+
     imageMode(CORNER);
     image(rudolfImg, drawPos.x, drawPos.y);
   }
@@ -54,7 +60,7 @@ class Carriage
   {
     if (!(collPos.x - collSize.x/2 <= p.nowPos.x && p.nowPos.x <= collPos.x + collSize.x/2
       && collPos.y - collSize.y/2 <= p.nowPos.y && p.nowPos.y <= collPos.y + collSize.y/2)) return false;
-    
+
     return true;
   }
 }
