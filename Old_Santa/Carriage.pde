@@ -27,13 +27,11 @@ class Carriage
     drawCarriage();
     if (deliver)
     {
-      soundHolder.getSound("clop").loop();
-      soundHolder.getSound("jingle_bell").play();
       drawPos = new PVector(drawPos.x + speed, drawPos.y);
     } else
     {
       drawCollideBox();
-      soundHolder.getSound("clop").stop();
+      
     }
   }
 
