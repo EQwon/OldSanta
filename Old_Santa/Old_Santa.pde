@@ -189,6 +189,7 @@ void keyPressed() {
   } else if (stage == 4 && (key == 'r' || key == 'R')) {
     stage = 0;
     correctCnt = 0;
+    tutoText.numberImgs = new PImage[5];
     synopsis = 0;
   }
 }
