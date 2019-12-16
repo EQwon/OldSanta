@@ -108,6 +108,19 @@ void NextQuiz()
   reaction.initialize();
 }
 
+void TutoQuiz()
+{
+  holdingPresentNum = 0;
+
+  quiz = new Quiz(data.randomData());
+
+  letter.initialize();
+  soundHolder.getSound("letter").play();
+  presents[2].initialize(new PVector(1400, 912));
+  car.initialize();
+  reaction.initialize();
+}
+
 void CorrectReaction()
 {
   println("Correct!");
@@ -153,7 +166,7 @@ void keyPressed() {
       {
         synopsis = 4;
         stage = 2;
-        NextQuiz();
+        TutoQuiz();
       }
     }
   } else if (stage == 2 && key == 'a')

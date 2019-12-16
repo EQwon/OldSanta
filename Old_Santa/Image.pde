@@ -2,7 +2,7 @@ class Image
 {
   String[] imageNames = {"Background", "Rudolf", "letter_thanks", "letter_noThanks",
     "intro0", "intro1", "intro2", "intro3", "intro4", "Title1", "Title2",
-    "number_1", "number_2", "number_3", "number_4", "number_5",
+    "number_1", "number_2", "number_3", "number_4", "number_5", "tutorial_gift",
     "heart0", "heart1", "heart2", "heart3", "glove_left", "glove_right",
     "letter_christmas_tree", "letter_cozy_socks", "letter_elsas_clothes", "letter_fire_engine", "letter_fish",
     "letter_glasses", "letter_globe", "letter_hamster_doll", "letter_kisses", "letter_mittens", 

@@ -28,10 +28,6 @@ class Carriage
     if (deliver)
     {
       drawPos = new PVector(drawPos.x + speed, drawPos.y);
-    } else
-    {
-      drawCollideBox();
-      
     }
   }
 

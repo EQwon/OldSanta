@@ -19,4 +19,9 @@ class Quiz
   {
     return imgHolder.getImage(imgNames[num]);
   }
+  
+  PImage presentImage(String name)
+  {
+    return imgHolder.getImage(name);
+  }
 }
