@@ -161,11 +161,17 @@ void blobStateMachine()
 
 void keyPressed() {
   if (stage == 0) {
-    stage = 1;
+    if (key == ' ') {
+      stage = 1;
+      soundHolder.getSound("paper").play();
+    }
   } else if (stage == 1) {
     if (key == ' ')
     {
       synopsis++;
+      if (synopsis <= 4) {
+        soundHolder.getSound("paper").play();
+      }
       if (synopsis >= 5)
       {
         synopsis = 4;
