@@ -135,6 +135,8 @@ void CorrectReaction()
 void WrongReaction()
 {
   println("Wrong");
+  soundHolder.getSound("wrong_answer").play();
+  soundHolder.getSound("wrong_answer_2").play();
   reaction.startDraw((int)random(3), false);
 
   timers.nextQuizTimer.startTimer();

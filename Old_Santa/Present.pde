@@ -58,12 +58,11 @@ class Present
       nowSpeed += gravity;
 
       if (nowPos.y > 1200) backToOrigin();
-    } else nowSpeed = 0;
+    } else backToOrigin();
 
     carriageChecking();
 
-    /*if (inputState == 0) backToOrigin();
-     else*/    if (inputState == 1) assignSelf(); 
+    if (inputState == 1) assignSelf(); 
     else if (inputState == 2) drag(new PVector(midPoint.x, midPoint.y));
     else if (inputState == 3) releasePresent();
   }
