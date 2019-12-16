@@ -1,12 +1,7 @@
-void startScene()
+void titleScene()
 {
-  background(255);
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(40);
-  text("Start Screen", width/2, height/2);
-  textSize(24);
-  text("- Press ANY Key -", width/2, height/2+40);
+  imageMode(CENTER);
+  image(imgHolder.getImage("Title1"), width/2, height/2);
 }
 
 void introScene()

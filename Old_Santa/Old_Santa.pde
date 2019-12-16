@@ -54,7 +54,7 @@ void draw()
 {
   switch(stage) {
   case 0: //start screen
-    startScene();
+    titleScene();
     break;
 
   case 1: //Synopsis screen
