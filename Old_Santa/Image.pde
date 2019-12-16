@@ -11,7 +11,7 @@ class Image
     "letter_watch", 
     "balloon", "binoculars", "bulb", "calculator", "camera_kid",
     "cat_headband", "christmas_tree", "cozy_socks", "crocodile_doll", "digital_camera",
-    "drawer", "dress_shrits", "ear_phone",
+    "drawer", "dress_shirts", "ear_phone",
     "earmuffs", "elsas_clothes", "fire_engine", "fish", "glass_shoes",
     "glasses", "globe", "gugu", "hamster_doll", "kisses",
     "lego", "mail_box", "microwave", "mimis_phone", "mittens", "money", 

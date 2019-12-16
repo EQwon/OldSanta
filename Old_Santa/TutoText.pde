@@ -2,7 +2,8 @@ class TutoText
 {
   boolean on;
   String text;
-  PImage[] imgs = new PImage[5];
+  PImage[] tutoImgs = new PImage[5];
+  PImage[] numberImgs = new PImage[5];
 
   TutoText()
   {
@@ -16,47 +17,45 @@ class TutoText
 
   void draw()
   {
+    if (tutoImgs[0] == null) getTutoImage();
+
     if (presents[2].isDelivering)
     {
+      // Well done
       imageMode(CENTER);
-      image(imgHolder.getImage("t5"), 205, 137);
-      if(imgs[0] == null)
+      image(tutoImgs[4], width/2, height/2);
+      if (numberImgs[0] == null)
       {
-        getImage();
+        getNumberImage();
         timers.tutoFinishTimer.startTimer();
       }      
       showTutoFinishTimer(); 
       return;
     }
-
+    if (presents[2].nowPos.x <= width * 0.3f)
+    {
+      // Let's drop
+      imageMode(CENTER);
+      image(tutoImgs[3], width/2, height/2);
+      return;
+    }
     if (blobs.size() < 2)
     {
+      // Ready
       imageMode(CENTER);
-      image(imgHolder.getImage("t2"), 205, 137);
-      /*fill(255);
-       textAlign(CENTER, CENTER);
-       textSize(24);
-       text("Pick up Controller", width/2, 50);*/
+      image(tutoImgs[0], width/2, height/2);
     } else
     {
       if (holdingPresentNum == 0)
       {
+        // Let's grab
         imageMode(CENTER);
-        image(imgHolder.getImage("t3"), 205, 137);        
-        /*fill(255);
-         textAlign(CENTER, CENTER);
-         textSize(24);
-         text("GOOD!", width/2, 50);
-         text("NOW Pick up Present!", width/2, 100);*/
+        image(tutoImgs[1], width/2, height/2);
       } else
       {
+        // Let's deliver
         imageMode(CENTER);
-        image(imgHolder.getImage("t4"), 205, 137);
-        /*fill(255);
-         textAlign(CENTER, CENTER);
-         textSize(24);
-         text("VERY GOOD!", width/2, 50);
-         text("NOW Carry Present", width/2, 100);*/
+        image(tutoImgs[2], width/2, height/2);
       }
     }
   }
@@ -64,18 +63,32 @@ class TutoText
   void showTutoFinishTimer()
   {
     int time = timers.tutoFinishTimer.remainTime();
-    PImage img = imgs[time];
+    PImage img = numberImgs[time];
 
     imageMode(CENTER);
     image(img, width/2, height/2);
   }
 
-  void getImage()
+  void getTutoImage()
   {
-    imgs[0] = imgHolder.getImage("number_1");
-    imgs[1] = imgHolder.getImage("number_2");
-    imgs[2] = imgHolder.getImage("number_3");
-    imgs[3] = imgHolder.getImage("number_4");
-    imgs[4] = imgHolder.getImage("number_5");
+    tutoImgs[0] = imgHolder.getImage("t1");
+    tutoImgs[1] = imgHolder.getImage("t2");
+    tutoImgs[2] = imgHolder.getImage("t3");
+    tutoImgs[3] = imgHolder.getImage("t4");
+    tutoImgs[4] = imgHolder.getImage("t5");
+
+    for (int i = 0; i < tutoImgs.length; i++)
+    {
+      tutoImgs[i].resize(width, height);
+    }
+  }
+
+  void getNumberImage()
+  {
+    numberImgs[0] = imgHolder.getImage("number_1");
+    numberImgs[1] = imgHolder.getImage("number_2");
+    numberImgs[2] = imgHolder.getImage("number_3");
+    numberImgs[3] = imgHolder.getImage("number_4");
+    numberImgs[4] = imgHolder.getImage("number_5");
   }
 }

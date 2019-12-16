@@ -176,7 +176,7 @@ boolean checkBlobDist()
   midPoint = videoMapping(getMiddle(b.get(0), b.get(1)));
   PVector distance = videoMapping(new PVector(b.get(0).getCenter().x - b.get(1).getCenter().x, b.get(0).getCenter().y - b.get(1).getCenter().y));
 
-  if (distance.mag() < 500) return true;
+  if (distance.mag() < 700) return true;
   return false;
 }
 
