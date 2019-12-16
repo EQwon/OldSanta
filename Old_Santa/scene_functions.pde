@@ -1,7 +1,9 @@
 void titleScene()
 {
+  PImage bg = animators.backgroundAnim.anim();
+  
   imageMode(CENTER);
-  image(imgHolder.getImage("Title1"), width/2, height/2);
+  image(bg, width/2, height/2);
 }
 
 void introScene()
@@ -90,20 +92,21 @@ void mainScene()
 void endingScene()
 {
   PImage ending;
-  
   if(correctCnt >= 6)
   {
-    
+
   }
   else
   {
     ending = imgHolder.getImage("ending_sad");
     ending.resize(width, height);
+    imageMode(CENTER);
+    image(ending, width/2, height/2);
     
-    PVector textPos = new PVector(width * 0.2f, height * 0.1f);
-    fill(255);
+    PVector textPos = new PVector(width * 0.32f, height * 0.136f);
+    fill(127, 19, 19);
     textAlign(CENTER, CENTER);
-    textSize(40);
+    textSize(70);
     text(str(correctCnt), textPos.x, textPos.y);
   }
 }

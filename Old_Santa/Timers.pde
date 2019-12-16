@@ -7,7 +7,7 @@ class Timers
   Timer correctReactionTimer = new Timer(1000);
   Timer wrongReactionTimer = new Timer(1000);
   Timer nextQuizTimer = new Timer(2000);
-  Timer mainTimer = new Timer(100000);
+  Timer mainTimer = new Timer(1000);
   
   void checkTimers()
   {

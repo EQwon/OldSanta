@@ -1,7 +1,7 @@
 class Image
 {
   String[] imageNames = {"Background", "Rudolf", "letter_thanks", "letter_noThanks",
-    "intro0", "intro1", "intro2", "intro3", "intro4", "Title1", "Title2",
+    "intro0", "intro1", "intro2", "intro3", "intro4", "title1", "title2",
     "number_1", "number_2", "number_3", "number_4", "number_5", "tutorial_gift",
     "heart0", "heart1", "heart2", "heart3", "glove_left", "glove_right",
     "letter_christmas_tree", "letter_cozy_socks", "letter_elsas_clothes", "letter_fire_engine", "letter_fish",
@@ -22,7 +22,7 @@ class Image
     "wallet", "watch", "woolen_hat", "yankee_candle", "zzinGoguma",
     "intermission", "t1", "t2", "t3", "t4", "t5",
     "ui_clock_bar_background", "ui_clock_icon", "ui_score_box", "ui_score_icon",
-    "ending_sad"};
+    "ending_sad", "ending_good1", "ending_good2"};
   PImage[] imgs;
 
   Image()

@@ -4,6 +4,7 @@ import processing.sound.*;
 Capture video;
 Image imgHolder;
 Sound soundHolder;
+Animators animators;
 
 //Main System
 TutoText tutoText = new TutoText();
@@ -44,6 +45,8 @@ void setup()
 
   imgHolder = new Image();
   soundHolder = new Sound();
+  animators = new Animators();
+  animators.initialize();
 
   // video setting
   video = new Capture(this, 640, 480, 30);
