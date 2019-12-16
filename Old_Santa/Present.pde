@@ -49,7 +49,7 @@ class Present
     } else nowSpeed = 0;
 
     carriageChecking();
-    
+
     /*if (inputState == 0) backToOrigin();
      else*/    if (inputState == 1) assignSelf(); 
     else if (inputState == 2) drag(new PVector(midPoint.x, midPoint.y));
@@ -64,6 +64,9 @@ class Present
       car.deliver = true;
       letter.on = false;
 
+      soundHolder.getSound("clop").loop();
+      soundHolder.getSound("jingle_bell").play();
+
       for (Present p : presents)
       {
         if (p == this) continue;
@@ -71,8 +74,17 @@ class Present
       }
 
       if (stage != 3) return; 
-      if (answerNum == myNum) timers.correctReactionTimer.startTimer();
-      else timers.wrongReactionTimer.startTimer();
+      if (answerNum == myNum) { 
+        timers.correctReactionTimer.startTimer();
+        soundHolder.getSound("right_answer_bell").play();
+        soundHolder.getSound("right_answer").play();
+      } else {
+        timers.wrongReactionTimer.startTimer();
+        soundHolder.getSound("wrong_answer").play();
+        soundHolder.getSound("wrong_answer_2").play();
+      }
+    } else {
+      soundHolder.getSound("clop").stop();
     }
   }
 
@@ -82,6 +94,7 @@ class Present
       && nowPos.y - height/2 <= midPoint.y && midPoint.y <= nowPos.y + height/2)
     {
       holdingPresentNum = myNum;
+      soundHolder.getSound("present_on").play();
     }
   }
 
@@ -99,6 +112,7 @@ class Present
 
     isFalling = true;
     holdingPresentNum = 0;
+    soundHolder.getSound("present_off").play();
   }
 
   void poofAnim()
