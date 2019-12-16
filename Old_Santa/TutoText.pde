@@ -2,6 +2,7 @@ class TutoText
 {
   boolean on;
   String text;
+  PImage[] imgs = new PImage[5];
 
   TutoText()
   {
@@ -19,11 +20,12 @@ class TutoText
     {
       imageMode(CENTER);
       image(imgHolder.getImage("t5"), 205, 137);
-      timers.tutoFinishTimer.startTimer();
-      fill(0);
-      textAlign(CENTER, CENTER);
-      textSize(500);
-      text(timers.tutoFinishTimer.remainTime(), width/2, height/2);      
+      if(imgs[0] == null)
+      {
+        getImage();
+        timers.tutoFinishTimer.startTimer();
+      }      
+      showTutoFinishTimer(); 
       return;
     }
 
@@ -57,5 +59,23 @@ class TutoText
          text("NOW Carry Present", width/2, 100);*/
       }
     }
+  }
+
+  void showTutoFinishTimer()
+  {
+    int time = timers.tutoFinishTimer.remainTime();
+    PImage img = imgs[time];
+
+    imageMode(CENTER);
+    image(img, width/2, height/2);
+  }
+
+  void getImage()
+  {
+    imgs[0] = imgHolder.getImage("number_1");
+    imgs[1] = imgHolder.getImage("number_2");
+    imgs[2] = imgHolder.getImage("number_3");
+    imgs[3] = imgHolder.getImage("number_4");
+    imgs[4] = imgHolder.getImage("number_5");
   }
 }

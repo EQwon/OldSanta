@@ -3,7 +3,7 @@ class Timers
   Timers()
   {}
   
-  Timer tutoFinishTimer = new Timer(5000);
+  Timer tutoFinishTimer = new Timer(4999);
   Timer correctReactionTimer = new Timer(1000);
   Timer wrongReactionTimer = new Timer(1000);
   Timer nextQuizTimer = new Timer(2000);

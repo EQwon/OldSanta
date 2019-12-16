@@ -38,6 +38,8 @@ class Timer
   
   int remainTime()
   {
+    if(set == false) return 0;
+    
     int remain = savedTime + interval - millis();
     
     return remain/1000;

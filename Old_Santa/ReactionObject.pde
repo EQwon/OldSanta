@@ -33,6 +33,11 @@ class ReactionObject
       imageMode(CORNER);
       image(correctImg, myPos.x, myPos.y);
     }
+    else
+    {
+      imageMode(CORNER);
+      image(wrongImg, myPos.x, myPos.y);
+    }
   }
   
   void getImage()
