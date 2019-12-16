@@ -37,7 +37,9 @@ int inputState = 0;
 
 //Stage & System
 int stage = 0;
+int bgm_stage = -1;
 int synopsis = 0; // PImage[] index num
+SoundFile[] sound_stages;
 
 void setup()
 {
@@ -48,6 +50,11 @@ void setup()
   animators = new Animators();
   animators.initialize();
 
+  sound_stages = new SoundFile[6];
+  for(int i = 0; i < sound_stages.length - 1; i++){
+    sound_stages[i] = soundHolder.getSound("stage" + i);
+  }
+  sound_stages[5] = soundHolder.getSound("stage4_bad");
   // video setting
   video = new Capture(this, 640, 480, 30);
   video.start();
@@ -76,6 +83,7 @@ void draw()
     endingScene();
     break;
   }
+  bgm_loop();
 }
 
 void drawBackground()
@@ -182,5 +190,18 @@ void keyPressed() {
     stage = 0;
     correctCnt = 0;
     synopsis = 0;
+  }
+}
+
+void bgm_loop() {
+  if(bgm_stage != stage) {
+    bgm_stage = stage;
+    for(int i = 0; i <sound_stages.length; i++){
+      if(i == stage) {
+        sound_stages[i].loop();
+      } else {
+        sound_stages[i].stop();
+      }
+    }
   }
 }

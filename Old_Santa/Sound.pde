@@ -1,7 +1,8 @@
 class Sound
 {
   String[] soundNames = {"clop", "jingle_bell", "letter", "present_off", "present_on", 
-    "right_answer", "wrong_answer", "wrong_answer_2", "right_answer_bell", "paper"};
+    "right_answer", "wrong_answer", "wrong_answer_2", "right_answer_bell", "paper", 
+    "beep_1", "beep_final", "stage0", "stage1", "stage2", "stage3", "stage4", "stage4_bad"};
   SoundFile[] sounds;
 
   Sound()
