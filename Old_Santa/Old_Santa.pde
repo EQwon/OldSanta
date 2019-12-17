@@ -198,14 +198,15 @@ void keyPressed() {
 }
 
 void bgm_loop() {
-  if (stage == 4 && correctCnt >= 6) {
+  if (stage == 4 && correctCnt < 6) {
     bgm_stage = 5;
     for (int i = 0; i <sound_stages.length; i++) {
-        if (i == bgm_stage) {
-          sound_stages[i].loop();
-        } else {
-          sound_stages[i].stop();
-        }
+      if (i == bgm_stage) {
+        sound_stages[i].loop();
+      } else {
+        sound_stages[i].stop();
+      }
+    }
   } else {
     if (bgm_stage != stage) {
       bgm_stage = stage;
