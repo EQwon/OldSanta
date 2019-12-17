@@ -36,7 +36,7 @@ boolean click = false;
 int inputState = 0;
 
 //Stage & System
-int stage = 4;
+int stage = 0;
 int bgm_stage = -1;
 int synopsis = 0; // PImage[] index num
 SoundFile[] sound_stages;
