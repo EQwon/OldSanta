@@ -87,7 +87,7 @@ class Blob {
     if (rightHand == null) rightHand = imgHolder.getImage("glove_right");
 
     imageMode(CENTER);
-    image(rightHand, drawPos.x - 120, drawPos.y);
+    image(rightHand, drawPos.x - 0.0625*width, drawPos.y);
   }
 
   void showLeftHand(PVector drawPos)
@@ -95,6 +95,6 @@ class Blob {
     if (leftHand == null) leftHand = imgHolder.getImage("glove_left");
 
     imageMode(CENTER);
-    image(leftHand, drawPos.x + 120, drawPos.y);
+    image(leftHand, drawPos.x + 0.0625*width, drawPos.y);
   }
 }

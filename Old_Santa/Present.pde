@@ -7,7 +7,7 @@ class Present
   PVector originPos;
   PVector nowPos;
   int myNum;
-  int width, height;
+  int myWidth, myHeight;
 
   float nowSpeed = 0;
   float gravity = 3;
@@ -22,11 +22,11 @@ class Present
     on = true;
     isDelivering = false;
     isFalling = false;
-    originPos = new PVector(1500, 272 + 320*posNum);
+    originPos = new PVector(0.78*width, (0.252+0.296*posNum)*height);
     nowPos = originPos;
     this.img = quiz.presentImage(myNum);
-    this.width = img.width;
-    this.height = img.height;
+    this.myWidth = img.width;
+    this.myHeight = img.height;
   }
 
   void initialize(PVector pos)
@@ -37,8 +37,8 @@ class Present
     originPos = pos;
     nowPos = originPos;
     this.img = quiz.presentImage("tutorial_gift");
-    this.width = img.width;
-    this.height = img.height;
+    this.myWidth = img.width;
+    this.myHeight = img.height;
   }
 
   void draw()
@@ -57,7 +57,7 @@ class Present
       nowPos.y += nowSpeed;
       nowSpeed += gravity;
 
-      if (nowPos.y > 1200) backToOrigin();
+      if (nowPos.y > height + 100) backToOrigin();
     } else nowSpeed = 0;
 
     carriageChecking();
@@ -95,8 +95,8 @@ class Present
 
   void assignSelf()
   {
-    if (nowPos.x - width/2 <= midPoint.x && midPoint.x <= nowPos.x + width/2
-      && nowPos.y - height/2 <= midPoint.y && midPoint.y <= nowPos.y + height/2)
+    if (nowPos.x - myWidth/2 <= midPoint.x && midPoint.x <= nowPos.x + myWidth/2
+      && nowPos.y - myHeight/2 <= midPoint.y && midPoint.y <= nowPos.y + myHeight/2)
     {
       holdingPresentNum = myNum;
       soundHolder.getSound("present_on").play();

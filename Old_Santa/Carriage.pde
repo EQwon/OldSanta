@@ -17,8 +17,8 @@ class Carriage
   {
     on = true;
     drawPos = new PVector(-950, height - 350);
-    collPos = new PVector(300, 1000);
-    collSize = new PVector(600, 100);
+    collPos = new PVector(0.15*width, 0.95*height);
+    collSize = new PVector(0.3*width, 0.1*height);
     deliver = false;
   }
 

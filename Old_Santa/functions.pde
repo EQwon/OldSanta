@@ -133,7 +133,7 @@ ArrayList<Blob> blobSizeCheck(ArrayList<Blob> b)
 {
   for (int i = b.size()-1; i >= 0; i--)
   {
-    if (b.get(i).size() < 1200 || b.get(i).size() > 40000)
+    if (b.get(i).size() < 0.625*width || b.get(i).size() > 21*width)
       b.remove(i);
   }
 
@@ -176,7 +176,7 @@ boolean checkBlobDist()
   midPoint = videoMapping(getMiddle(b.get(0), b.get(1)));
   PVector distance = videoMapping(new PVector(b.get(0).getCenter().x - b.get(1).getCenter().x, b.get(0).getCenter().y - b.get(1).getCenter().y));
 
-  if (distance.mag() < 700) return true;
+  if (distance.mag() < 0.36*width) return true;
   return false;
 }
 
@@ -265,17 +265,17 @@ void showRemainTime()
   
   imageMode(CENTER);
   tint(255, 100);
-  image(bar, 1650, 60);
+  image(bar, 0.859*width, 0.0556*height);
   rectMode(CENTER);
   noStroke();
   fill(255, 50, 50, 200);
-  rect(1650 - bar.width*ratio/2, 60, (1-ratio)*bar.width, 0.9*bar.height);
+  rect(0.859*width - bar.width*ratio/2, 0.0556*height, (1-ratio)*bar.width, 0.9*bar.height);
   textAlign(CENTER, CENTER);
   fill(255);
-  textSize(40);
-  text(remainTime, width - 80, 60);
+  textSize(0.021*width);
+  text(remainTime, 0.95*width, 0.0556*height);
   tint(255);
-  image(icon, 1400, 60);
+  image(icon, 0.729*width, 0.0556*height);
 }
 
 void showCorrectCnt()
@@ -285,11 +285,11 @@ void showCorrectCnt()
   
   imageMode(CENTER);
   tint(255, 100);
-  image(box, 1200, 60);
+  image(box, 0.625*width, 0.0556*height);
   fill(255);
-  textSize(40);
+  textSize(0.021*width);
   textAlign(CENTER, CENTER);
-  text(correctCnt, 1250, 60);
+  text(correctCnt, 0.651*width, 0.0556*height);
   tint(255);
-  image(icon, 1100, 55);
+  image(icon, 0.573*width, 0.051*height);
 }

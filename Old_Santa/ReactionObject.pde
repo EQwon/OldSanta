@@ -6,7 +6,7 @@ class ReactionObject
   PImage[] hearts = new PImage[4];
   PImage wrongImg;
   
-  private PVector[] position = {new PVector(379, 529), new PVector(1082, 606), new PVector(1331, 454)};
+  private PVector[] position = new PVector[3];
   private PVector myPos;
   
   ReactionObject()
@@ -15,6 +15,9 @@ class ReactionObject
   void initialize()
   {
     on = false;
+    position[0] = new PVector(0.197*width, 0.49*height);
+    position[1] = new PVector(0.563*width, 0.561*height);
+    position[2] = new PVector(0.693*width, 0.42*height);
   }
   
   void startDraw(int pos, boolean isCorrect)

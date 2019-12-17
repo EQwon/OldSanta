@@ -1,6 +1,7 @@
 void titleScene()
 {
   PImage bg = animators.backgroundAnim.anim();
+  bg.resize(width, height);
   
   imageMode(CENTER);
   image(bg, width/2, height/2);
@@ -30,8 +31,11 @@ void introScene()
     imgName = "intro4";
     break;
   }
+  
+  PImage target = imgHolder.getImage(imgName);
+  target.resize(width, height);
   imageMode(CENTER);
-  image(imgHolder.getImage(imgName), width/2, height/2);
+  image(target, width/2, height/2);
 }
 
 void tutorialScene()
@@ -102,7 +106,7 @@ void endingScene()
     PVector textPos = new PVector(width * 0.73f, height * 0.134f);
     fill(127, 19, 19);
     textAlign(CENTER, CENTER);
-    textSize(160);
+    textSize(0.083*width);
     text(str(correctCnt), textPos.x, textPos.y);
   }
   else
@@ -115,7 +119,7 @@ void endingScene()
     PVector textPos = new PVector(width * 0.32f, height * 0.136f);
     fill(127, 19, 19);
     textAlign(CENTER, CENTER);
-    textSize(70);
+    textSize(0.036*width);
     text(str(correctCnt), textPos.x, textPos.y);
   }
 }

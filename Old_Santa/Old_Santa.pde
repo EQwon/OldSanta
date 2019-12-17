@@ -96,6 +96,7 @@ void drawBackground()
   imageMode(CENTER);
 
   PImage image = imgHolder.getImage("Background");
+  image.resize(width, height);
   image(image, width/2, height/2);
 }
 
@@ -124,7 +125,7 @@ void TutoQuiz()
 
   letter.initialize();
   soundHolder.getSound("letter").play();
-  presents[2].initialize(new PVector(1250, 850));
+  presents[2].initialize(new PVector(0.651*width, 0.787*height));
   car.initialize();
   reaction.initialize();
 }

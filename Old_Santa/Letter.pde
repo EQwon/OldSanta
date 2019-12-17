@@ -2,7 +2,7 @@ class Letter
 {
   boolean on;
   PImage img;
-  PVector pos = new PVector(200, 200);
+  PVector pos;
 
   Letter()
   {
@@ -19,6 +19,7 @@ class Letter
   void initialize()
   {
     on = true;
+    pos = new PVector(0.1*width, 0.185*height);
     img = quiz.letterImage();
     img.resize(660, 450);
   }
