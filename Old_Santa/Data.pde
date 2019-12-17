@@ -1,12 +1,5 @@
 class Data
 {
-  String[][] randomData = new String[21][4];
-  int dataNum;
-  
-  Data()
-  {
-  }
-  
   String[][] QuizData = {
     //letter, answer, wrong1, wrong2
     {"letter_christmas_tree", "christmas_tree", "teddy_bear", "scarf"},
@@ -29,9 +22,19 @@ class Data
     {"letter_straw_hat", "straw_hat", "binoculars", "globe"},
     {"letter_train", "train", "teddy_bear", "umbrella"},
     {"letter_wallet", "wallet", "balloon", "mail_box"},
-    {"letter_watch", "watch", "ringtoy", "pengsoo"}    
+    {"letter_watch", "watch", "ringtoy", "pengsoo"},
+    {"letter_calculator", "calculator", "dress_shirts", "microwave"},
+    {"letter_yankee_candle", "yankee_candle", "microwave", "bulb"},
+    {"letter_reindeer_doll", "reindeer_doll", "star_doll", "rabbit_doll"}
   };
   
+  String[][] randomData = new String[QuizData.length][4];
+  int dataNum;
+  
+  Data()
+  {
+  }
+
   String[] randomData()
   {
     dataNum += 1;
