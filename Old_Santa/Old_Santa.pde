@@ -36,10 +36,11 @@ boolean click = false;
 int inputState = 0;
 
 //Stage & System
-int stage = 0;
+int stage = 4;
 int bgm_stage = -1;
 int synopsis = 0; // PImage[] index num
 SoundFile[] sound_stages;
+int playCount = 1;
 
 void setup()
 {
@@ -192,6 +193,7 @@ void keyPressed() {
   } else if (stage == 4 && (key == 'r' || key == 'R')) {
     stage = 0;
     correctCnt = 0;
+    playCount = 1;
     tutoText.numberImgs = new PImage[5];
     synopsis = 0;
   }
@@ -199,12 +201,15 @@ void keyPressed() {
 
 void bgm_loop() {
   if (stage == 4 && correctCnt < 6) {
-    bgm_stage = 5;
-    for (int i = 0; i <sound_stages.length; i++) {
-      if (i == bgm_stage) {
-        sound_stages[i].loop();
-      } else {
-        sound_stages[i].stop();
+    if (playCount == 1) {
+      playCount++;
+      bgm_stage = 5;
+      for (int i = 0; i <sound_stages.length; i++) {
+        if (i == bgm_stage) {
+          sound_stages[i].play();
+        } else {
+          sound_stages[i].stop();
+        }
       }
     }
   } else {
